@@ -11,9 +11,11 @@
         android:name="io.flutter.app.FlutterApplication"
         android:label="jitsi_meet_example"
         android:icon="@mipmap/ic_launcher">
+            <!-- android:launchMode="singleTop" -->
         <activity
             android:name=".MainActivity"
-            android:launchMode="singleTop"
+            android:launchMode="singleTask"
+             android:supportsPictureInPicture="false"
             android:theme="@style/LaunchTheme"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
             android:hardwareAccelerated="true"

@@ -16,9 +16,11 @@ buildscript {
 
 rootProject.allprojects {
     repositories {
-        maven {
-            url "https://github.com/jitsi/jitsi-maven-repository/raw/master/releases"
-        }
+        // maven {
+        //     url "https://github.com/jitsi/jitsi-maven-repository/raw/master/releases"
+        // }
+        // maven { url "https://raw.githubusercontent.com/Faisalkc4u/jitsi_android_mvn/main" }
+        maven { url "https://raw.githubusercontent.com/Mohamed-Gibreel/mvn-repo/master" }
         google()
         jcenter()
     }
@@ -44,11 +46,12 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-}
 
+}
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     // Jitsi Meet from https://github.com/jitsi/jitsi-maven-repository/tree/master/releases/org/jitsi/react/jitsi-meet-sdk
-    implementation ('org.jitsi.react:jitsi-meet-sdk:3.8.0') { transitive = true }
+    implementation ('org.jitsi.react:jitsi-meet-sdk:3.6.0') { transitive = true }
+    
 }

@@ -23,11 +23,7 @@ class JitsiMeet {
       defaultRoomNameConstraints = {
     RoomNameConstraintType.MIN_LENGTH: new RoomNameConstraint((value) {
       return value.trim().length >= 3;
-    }, "Minimum room length is 3"),
-    RoomNameConstraintType.ALLOWED_CHARS: new RoomNameConstraint((value) {
-      return RegExp(r"^[a-zA-Z0-9-_]+$", caseSensitive: false, multiLine: false)
-          .hasMatch(value);
-    }, "Only alphanumeric, dash, and underscore chars allowed"),
+    }, "Minimum room length is 3")
   };
 
   /// Joins a meeting based on the JitsiMeetingOptions passed in.

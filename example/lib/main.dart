@@ -235,6 +235,7 @@ class _MeetingState extends State<Meeting> {
     // Full list of feature flags (and defaults) available in the README
     Map<FeatureFlagEnum, bool> featureFlags = {
       FeatureFlagEnum.WELCOME_PAGE_ENABLED: false,
+      FeatureFlagEnum.PIP_ENABLED: false,
     };
     if (!kIsWeb) {
       // Here is an example, disabling features for each platform
@@ -247,8 +248,13 @@ class _MeetingState extends State<Meeting> {
       }
     }
     // Define meetings options here
-    var options = JitsiMeetingOptions(room: roomText.text)
+    var options = JitsiMeetingOptions(
+        // room: "vpaas-magic-cookie-e72d0a6f97274c84a5082023ad029ebf/A" +
+        room: roomText.text)
+      // ..serverURL = "https://8x8.vc"
       ..serverURL = serverUrl
+      // ..token =
+      //     "eyJraWQiOiJ2cGFhcy1tYWdpYy1jb29raWUtZTcyZDBhNmY5NzI3NGM4NGE1MDgyMDIzYWQwMjllYmYvOTkyMWYwLVNBTVBMRV9BUFAiLCJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiJqaXRzaSIsImV4cCI6MTYyNzgxNzAxMiwibmJmIjoxNjI3ODA5ODA3LCJpc3MiOiJjaGF0Iiwicm9vbSI6IioiLCJzdWIiOiJ2cGFhcy1tYWdpYy1jb29raWUtZTcyZDBhNmY5NzI3NGM4NGE1MDgyMDIzYWQwMjllYmYiLCJjb250ZXh0Ijp7ImZlYXR1cmVzIjp7ImxpdmVzdHJlYW1pbmciOmZhbHNlLCJvdXRib3VuZC1jYWxsIjpmYWxzZSwic2lwLW91dGJvdW5kLWNhbGwiOmZhbHNlLCJ0cmFuc2NyaXB0aW9uIjpmYWxzZSwicmVjb3JkaW5nIjpmYWxzZX0sInVzZXIiOnsibW9kZXJhdG9yIjp0cnVlLCJuYW1lIjoiVGVzdCBVc2VyIiwiaWQiOiJhdXRoMHw2MGU0MDAyOTE1MjQzYjAwNmE2M2U2NTAiLCJhdmF0YXIiOiIiLCJlbWFpbCI6InRlc3QudXNlckBjb21wYW55LmNvbSJ9fX0.jFjqmxNfBpLbzTqUSScCjLB5TrjDW0K1EstSSfG6mGhdPiWyQB0OtgIB1ziPQNLb7pbDV8pAUa_kxiM-cx_-L-ds9SQNG5KFec-um1-925maRLFyC3erbuAt9aXjJPbsDrj0TPfxErP9QmIOFfdUy_ag_UARXXSi4zh5jraG2nF-uGAWyRk6Q_H9FrlfLJQLZZ-O4zS9NWr2zmr42zNXD-rcok25QIceTw3hB_1vzWyuzt6G7X1l9levyJ_ROev7OOKMOIEg0mBQPjiHtGP_CJnRlc3OcU4VDRfpkS9I2AOGWVH1k1L7t-ybiaGnXxWddahtri0dVIDJ8waBCmRpcQ"
       ..subject = subjectText.text
       ..userDisplayName = nameText.text
       ..userEmail = emailText.text
@@ -256,17 +262,10 @@ class _MeetingState extends State<Meeting> {
       ..audioOnly = isAudioOnly
       ..audioMuted = isAudioMuted
       ..videoMuted = isVideoMuted
-      ..featureFlags.addAll(featureFlags)
-      ..webOptions = {
-        "roomName": roomText.text,
-        "width": "100%",
-        "height": "100%",
-        "enableWelcomePage": false,
-        "chromeExtensionBanner": null,
-        "userInfo": {"displayName": nameText.text}
-      };
+      ..featureFlags.addAll(featureFlags);
 
     debugPrint("JitsiMeetingOptions: $options");
+
     await JitsiMeet.joinMeeting(
       options,
       listener: JitsiMeetingListener(

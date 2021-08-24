@@ -66,11 +66,11 @@ class JitsiViewController: UIViewController {
             builder.welcomePageEnabled = true
             builder.room = self.roomName
             builder.serverURL = self.serverUrl
-            // builder.subject = self.subject
+            builder.subject = self.subject
             builder.userInfo = self.jistiMeetUserInfo
-            // builder.audioOnly = self.audioOnly ?? false
-            // builder.audioMuted = self.audioMuted ?? false
-            // builder.videoMuted = self.videoMuted ?? false
+            builder.audioOnly = self.audioOnly ?? false
+            builder.audioMuted = self.audioMuted ?? false
+            builder.videoMuted = self.videoMuted ?? false
             builder.token = self.token
             
             self.featureFlags?.forEach{ key,value in
